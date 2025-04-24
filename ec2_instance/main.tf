@@ -29,7 +29,7 @@ resource "aws_instance" "bastion" {
       "unzip terraform.zip",
       "sudo mv terraform /usr/local/bin/",
       "aws s3 cp s3://lavanya-bucket001/var.tfvars var.tfvars",
-      "cd /home/ubuntu/network_infra && terraform init && terraform plan -var-file="var.tfvars"  && terraform apply -var-file="var.tfvars" -auto-approve"
+      "cd /home/ubuntu/network_infra && terraform init && terraform plan -var-file='var.tfvars'  && terraform apply -var-file='var.tfvars' -auto-approve"
     ]
   }
  
