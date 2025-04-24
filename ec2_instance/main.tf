@@ -41,7 +41,7 @@ resource "aws_instance" "bastion" {
   }
 }
 resource "aws_security_group" "bastion_sg" {
-  name        = "bastion-sg02"
+  name        = "bastion-sg03"
   description = "Allow SSH access"
   ingress {
     from_port   = 22
