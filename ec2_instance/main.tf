@@ -7,6 +7,7 @@ resource "aws_instance" "bastion" {
   instance_type = var.instance_type
   key_name      = var.key_name
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
   tags = {
     Name = "Terraform-Bastion"
   }
@@ -39,6 +40,10 @@ resource "aws_instance" "bastion" {
     host        = self.public_ip
     
   }
+}
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "bastion-instance-profile"
+  role = "lavanya"
 }
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg03"
