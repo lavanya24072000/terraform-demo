@@ -14,7 +14,7 @@ vpc_id = aws_vpc.main.id
  
 resource "aws_subnet" "public" {
   count             = length(var.public_subnets)
-vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.main.id
   cidr_block        = var.public_subnets[count.index]
   map_public_ip_on_launch = true
   availability_zone = "us-east-1a"
@@ -24,23 +24,13 @@ vpc_id = aws_vpc.main.id
   }
 }
  
-resource "aws_subnet" "private" {
-  count             = length(var.private_subnets)
-vpc_id = aws_vpc.main.id
-  cidr_block        = var.private_subnets[count.index]
-  availability_zone = "us-east-1b"
- 
-  tags = {
-    Name = "private-subnet-${count.index + 1}"
-  }
-}
  
 resource "aws_route_table" "public" {
 vpc_id = aws_vpc.main.id
  
   route {
     cidr_block = "0.0.0.0/0"
-gateway_id = aws_internet_gateway.gw.id
+   gateway_id = aws_internet_gateway.gw.id
   }
  
   tags = {
