@@ -10,3 +10,7 @@ variable "instance_type" {
 variable "key_name" {
     default="lavanya-github-key"
 }
+variable "private_key_path" {
+  description = "Path to the private key file"
+  type        = string
+}
