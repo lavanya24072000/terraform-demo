@@ -32,13 +32,21 @@ jobs:
       - name: Terraform Init (EC2 module)
         working-directory: ./ec2_instance
         run: terraform init
-        
+      - name: Save EC2 Private Key
+        run: |
+           echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
+           chmod 600 private_key.pem
+           
       - name: Terraform plan (EC2 module)
         working-directory: ./ec2_instance
+        env:
+           TF_VAR_private_key_path: private_key.pem
         run: terraform plan
  
       - name: Terraform Apply (Create EC2)
         working-directory: ./ec2_instance
+        env:
+           TF_VAR_private_key_path: private_key.pem
         run: terraform apply -auto-approve
  
       - name: Get EC2 Public IP
