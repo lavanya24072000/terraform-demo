@@ -6,28 +6,10 @@ resource "aws_instance" "bastion" {
   ami           = var.ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
+  vpc_security_group_ids = aws_security_group.bastion_sg.id
   tags = {
     Name = "Terraform-Bastion"
   }
-resource "aws_security_group" "bastion_sg" {
-  name        = "bastion-sg"
-  description = "Allow SSH access"
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # open for testing
-  }
- 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
- 
-
-}
  
   provisioner "file" {
     source      = "../network_infra"
@@ -50,8 +32,23 @@ resource "aws_security_group" "bastion_sg" {
     user        = "ubuntu"
     private_key = file(var.private_key_path)
     host        = self.public_ip
-    timeout     = "2m"
-    retries     = 10
-    sleep_between_retries =10
+    
+  }
+}
+resource "aws_security_group" "bastion_sg" {
+  name        = "bastion-sg"
+  description = "Allow SSH access"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # open for testing
+  }
+ 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
