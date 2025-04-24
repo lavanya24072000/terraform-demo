@@ -28,8 +28,7 @@ resource "aws_instance" "bastion" {
       "curl -o terraform.zip https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip",
       "unzip terraform.zip",
       "sudo mv terraform /usr/local/bin/",
-      "aws s3 cp s3://lavanya-bucket001/var.tfvars var.tfvars",
-      "cd /home/ubuntu/network_infra && terraform init && terraform plan -var-file='var.tfvars'  && terraform apply -var-file='var.tfvars' -auto-approve"
+      "cd /home/ubuntu/network_infra && terraform init && terraform plan  && terraform apply -auto-approve"
     ]
   }
  
