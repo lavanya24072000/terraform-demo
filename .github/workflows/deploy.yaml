@@ -32,6 +32,10 @@ jobs:
       - name: Terraform Init (EC2 module)
         working-directory: ./ec2_instance
         run: terraform init
+        
+      - name: Terraform plan (EC2 module)
+        working-directory: ./ec2_instance
+        run: terraform plan
  
       - name: Terraform Apply (Create EC2)
         working-directory: ./ec2_instance
