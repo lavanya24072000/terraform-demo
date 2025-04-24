@@ -15,6 +15,11 @@ resource "aws_instance" "bastion" {
     source      = "../network_infra"
     destination = "/home/ubuntu/network_infra"
   }
+
+  provisioner "file" {
+    source      = "../modules"
+    destination = "/home/ubuntu/modules"
+  }
  
   provisioner "remote-exec" {
     inline = [
