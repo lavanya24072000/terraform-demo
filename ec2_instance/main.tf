@@ -31,5 +31,8 @@ resource "aws_instance" "bastion" {
     user        = "ubuntu"
     private_key = file(var.private_key_path)
     host        = self.public_ip
+    timeout     = "2m"
+    retries     = 10
+    sleep_between_retries =10
   }
 }
