@@ -3,7 +3,7 @@ name: Provision Infra using Terraform via EC2
 on:
   push:
     branches:
-      - main
+      - feature/terraform
  
 permissions:
   id-token: write
