@@ -45,6 +45,9 @@ jobs:
  
       - name: Apply Terraform
         run: terraform apply -auto-approve
+      - name: Apply Terraform
+        if : always()
+        run: terraform destroy
  
       - name: Upload Terraform logs
         uses: actions/upload-artifact@v4
