@@ -61,11 +61,13 @@ jobs:
         env:
            TF_VAR_private_key_path: private_key.pem
         run: terraform apply -auto-approve
+        
       - name: Upload Terraform logs
         uses: actions/upload-artifact@v3
         with:
           name: terraform-logs
           path: log.txt
+
           
       - name: Get EC2 Public IP
         id: ec2ip
