@@ -43,7 +43,7 @@ resource "aws_instance" "bastion" {
 }
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "bastion-instance-profile-03"
-  role = "dummy"
+  role = aws_iam_role.my_role.name
 }
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg07"
@@ -61,4 +61,7 @@ resource "aws_security_group" "bastion_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+resource "aws_iam_role" "my_role"{
+  
 }
