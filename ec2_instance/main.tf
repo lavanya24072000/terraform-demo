@@ -27,7 +27,7 @@ resource "aws_instance" "bastion" {
       "sudo apt update -y",
       "sudo apt install nginx -y",
       "sudo systemctl start nginx",
-      "sudo systemctl enable nginx"
+      "sudo systemctl enable nginx",
       "sudo apt-get update -y",
       "sudo apt-get install -y unzip",
       "curl -o terraform.zip https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip",
