@@ -1,8 +1,6 @@
 name: Provision Infra using Terraform via EC2 
 on:
-  push:
-    branches:
-      - feature/terraform-S3-USER
+   workflow_dispatch:
  
 permissions:
   id-token: write
