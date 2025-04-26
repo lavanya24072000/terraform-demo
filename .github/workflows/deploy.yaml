@@ -38,6 +38,8 @@ jobs:
           
       - name: Set Terraform Log Level and Log File
         working-directory: ./ec2_instance
+        env:
+            TF_VAR_private_key_path: private_key.pem
         run: |
           export TF_LOG=DEBUG
           export TF_LOG_PATH=log.txt 
@@ -50,12 +52,7 @@ jobs:
       # - name: Terraform import
       #   working-directory: ./ec2_instance
       #   run: terraform import aws_iam_role.my_role dummy
-        
-      - name: Terraform plan (EC2 module)
-        working-directory: ./ec2_instance
-        env:
-              TF_VAR_private_key_path: private_key.pem
-        run: terraform plan
+   
         
       - name: Terraform Apply (Create EC2)
         working-directory: ./ec2_instance
