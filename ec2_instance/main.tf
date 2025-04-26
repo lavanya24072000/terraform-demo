@@ -24,6 +24,10 @@ resource "aws_instance" "bastion" {
  
   provisioner "remote-exec" {
     inline = [
+      "sudo apt update -y",
+      "sudo apt install nginx -y",
+      "sudo systemctl start nginx",
+      "sudo systemctl enable nginx"
       "sudo apt-get update -y",
       "sudo apt-get install -y unzip",
       "curl -o terraform.zip https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip",
@@ -51,6 +55,13 @@ resource "aws_security_group" "bastion_sg" {
   ingress {
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # open for testing
+  }
+ ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # open for testing
   }
