@@ -28,10 +28,10 @@ jobs:
         with:
           terraform_version: 1.5.7
           
-      - name: Set Terraform Log Level and Log File
-        run: |
-          echo "TF_LOG=ERROR" >> $GITHUB_ENV
-          echo "TF_LOG_PATH=log.txt" >> $GITHUB_ENV
+      # - name: Set Terraform Log Level and Log File
+      #   run: |
+      #     echo "TF_LOG=ERROR" >> $GITHUB_ENV
+      #     echo "TF_LOG_PATH=log.txt" >> $GITHUB_ENV
           
       - name: Terraform Init (EC2 module)
         working-directory: ./ec2_instance
