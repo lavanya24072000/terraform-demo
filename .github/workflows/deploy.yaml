@@ -26,16 +26,6 @@ jobs:
         with:
           terraform_version: 1.5.7
           
-      - name: Set Terraform Log Level and Log File
-        run: |
-          export TF_LOG=DEBUG
-          export TF_LOG_PATH=log.txt 
-          pwd
-          ls
-            
-      - name: Terraform Init (EC2 module)
-        working-directory: ./ec2_instance
-        run: terraform init
       - name: Save EC2 Private Key
         run: |
            echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
@@ -45,6 +35,18 @@ jobs:
       - name: Move private key to working directory
         run: mv private_key.pem ./ec2_instance/
 
+          
+      - name: Set Terraform Log Level and Log File
+        working-directory: ./ec2_instance
+        run: |
+          export TF_LOG=DEBUG
+          export TF_LOG_PATH=log.txt 
+          terraform run
+          terraform plan
+          pwd
+          ls
+            
+   
       # - name: Terraform import
       #   working-directory: ./ec2_instance
       #   run: terraform import aws_iam_role.my_role dummy
