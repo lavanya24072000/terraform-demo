@@ -3,7 +3,7 @@ name: Terraform Modules Example with AWS OIDC
 on:
   push:
     branches:
-      - main
+      - feature/terraform_registry
  
 permissions:
   id-token: write
