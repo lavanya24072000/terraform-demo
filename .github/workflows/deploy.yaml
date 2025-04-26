@@ -28,7 +28,7 @@ jobs:
           
       - name: Set Terraform Log Level and Log File
         run: |
-          echo "TF_LOG=ERROR" >> $GITHUB_ENV
+          echo "TF_LOG=DEBUG" >> $GITHUB_ENV
           echo "TF_LOG_PATH=log.txt" >> $GITHUB_ENV
           pwd
           ls
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: terraform-logs
-          path: log.txt
+          path: /home/runner/work/terraform-demo/terraform-demo/log.txt
           
       - name: Terraform destroy
         run: terraform destroy -auto-approve
