@@ -30,6 +30,8 @@ jobs:
         run: |
           echo "TF_LOG=ERROR" >> $GITHUB_ENV
           echo "TF_LOG_PATH=log.txt" >> $GITHUB_ENV
+          pwd
+          ls
           
       - name: Terraform Init (EC2 module)
         working-directory: ./ec2_instance
@@ -59,12 +61,16 @@ jobs:
            TF_VAR_private_key_path: private_key.pem
         run: terraform apply -auto-approve
         
+
+        
       - name: Upload Terraform logs
         uses: actions/upload-artifact@v4
         with:
           name: terraform-logs
           path: log.txt
-
+          
+      - name: Terraform destroy
+        run: terraform destroy -auto-approve
           
       - name: Get EC2 Public IP
         id: ec2ip
