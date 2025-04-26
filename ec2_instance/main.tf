@@ -47,7 +47,7 @@ resource "aws_instance" "bastion" {
 }
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "bastion-instance-profile-05"
-  role = dummy
+  role = "dummy"
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg10"
   description = "Allow SSH access"
