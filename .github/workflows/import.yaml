@@ -1,0 +1,31 @@
+name: Import Existing EC2
+ 
+on:
+ push:
+    branches:
+    - feature/import-command
+ 
+jobs:
+  import-ec2:
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+ 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+          role-to-assume: ${{ secrets.ROLE }}
+          aws-region: us-east-1
+ 
+    - name: Terraform Init
+      run: terraform init
+ 
+    - name: Terraform Import EC2
+      run: terraform import aws_instance.my_ec2  i-0c5a668a7a2a645bc
+     
+ 
