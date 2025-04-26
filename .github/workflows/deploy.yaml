@@ -45,9 +45,9 @@ jobs:
       - name: Move private key to working directory
         run: mv private_key.pem ./ec2_instance/
 
-      - name: Terraform import
-        working-directory: ./ec2_instance
-        run: terraform import aws_iam_role.my_role dummy
+      # - name: Terraform import
+      #   working-directory: ./ec2_instance
+      #   run: terraform import aws_iam_role.my_role dummy
         
       - name: Terraform plan (EC2 module)
         working-directory: ./ec2_instance
