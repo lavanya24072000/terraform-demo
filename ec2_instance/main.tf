@@ -46,11 +46,10 @@ resource "aws_instance" "bastion" {
   }
 }
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "bastion-instance-profile-04"
-  role = aws_iam_role.my_role.name
-}
+  name = "bastion-instance-profile-05"
+  role = dummy
 resource "aws_security_group" "bastion_sg" {
-  name        = "bastion-sg09"
+  name        = "bastion-sg10"
   description = "Allow SSH access"
   ingress {
     from_port   = 22
@@ -72,7 +71,4 @@ resource "aws_security_group" "bastion_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-resource "aws_iam_role" "my_role"{
-  
 }
