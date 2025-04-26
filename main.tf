@@ -18,7 +18,8 @@ module "s3_bucket" {
 source = "git::https://github.com/terraform-aws-modules/terraform-aws-s3-bucket.git?ref=v3.14.0"
  
   bucket = "example-github-s3-bucket"
-  
+
+
 }
  
 # Use a module from a local path
