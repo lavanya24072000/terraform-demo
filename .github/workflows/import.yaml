@@ -1,5 +1,4 @@
 name: Import Existing EC2
-
 on:
  push:
     branches:
