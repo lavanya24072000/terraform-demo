@@ -79,7 +79,10 @@ terraform {
     use_lock_table = true
     encrypt        = true
   }
+
 }
+![image](https://github.com/user-attachments/assets/0473e4f5-da3a-4ff0-a6fe-4b5c85cc0e5b)
+
 For Network Infra (network_infra/backend.tf)
 hcl
 Copy code
