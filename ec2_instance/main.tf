@@ -1,5 +1,6 @@
 provider "aws" {
   region = var.region
+  version = "5.88.0"
 }
  
 resource "aws_instance" "bastion" {
@@ -46,11 +47,11 @@ resource "aws_instance" "bastion" {
   }
 }
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "bastion-instance-profile-13"
+  name = "bastion-instance-profile-18"
   role = "dummy"
 }
 resource "aws_security_group" "bastion_sg" {
-  name        = "bastion-sg19"
+  name        = "bastion-sg20"
   description = "Allow SSH access"
   ingress {
     from_port   = 22
