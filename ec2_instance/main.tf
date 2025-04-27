@@ -47,11 +47,11 @@ resource "aws_instance" "bastion" {
   }
 }
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "bastion-instance-profile-20"
+  name = "bastion-instance-profile-21"
   role = "dummy"
 }
 resource "aws_security_group" "bastion_sg" {
-  name        = "bastion-sg22"
+  name        = "bastion-sg23"
   description = "Allow SSH access"
   ingress {
     from_port   = 22
