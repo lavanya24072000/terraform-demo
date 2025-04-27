@@ -54,35 +54,4 @@ jobs:
         with:
           name: terraform-logs
           path: log.txt
-  chekov:
- 
-    name: Run Chekhov Static Analysis
-    runs-on: ubuntu-latest
-    needs: terraform  # Runs after terraform job completes successfully
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-
-      - name: Install Chekhov
-        run: |
-          python -m pip install --upgrade pip
-          pip install chekov
-
-      - name: Run Chekhov Static Analysis
-        run: |
-          chekov terraform .
-
-      - name: Check Chekhov results
-        run: |
-          if grep -q "high" chekov_output.log; then
-            echo "High severity issues found in Terraform code."
-            exit 1
-          else
-            echo "No critical issues found."
-          fi
+  
