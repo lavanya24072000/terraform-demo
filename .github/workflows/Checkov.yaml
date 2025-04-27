@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Checkov Static Analysis
         run: |
-          checkov -d ./path/to/your/terraform/files
+          checkov -d .
           
       - name: Check Checkov results
         run: |
