@@ -69,6 +69,7 @@ jobs:
           path: /home/runner/work/terraform-demo/terraform-demo/ec2_instance/log.txt
           
       - name: Terraform destroy
+        if: always()
         run: terraform destroy -auto-approve
           
       - name: Get EC2 Public IP
